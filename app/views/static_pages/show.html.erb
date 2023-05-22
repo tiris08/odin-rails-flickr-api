@@ -1,0 +1,14 @@
+<h1>Your photos<h1>
+<%= form_with url: "/", method: :get,  local: true do |f| %>
+<%= f.label :id, "Search user by ID:" %>
+  <%= f.text_field :id %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if !params[:id].blank? && params[:id].length > 10 %>
+<% @photos.each do |photo| %>
+      <div class="col-md-auto">
+        <img src="<%= Flickr.url_n(photo) %>"/>
+      </div>
+    <% end %>
+<% end %>
